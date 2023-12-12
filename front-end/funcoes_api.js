@@ -72,7 +72,7 @@ const get_pessoa = async (email) => {
   */
   const delete_pessoa = async (idPessoa) => {
     const response = await fetch(`http://localhost:5000/pessoa?idPessoa=${idPessoa}`, {
-      method: "DELETE",
+      method: "delete",
     });
   
     return await response.json();

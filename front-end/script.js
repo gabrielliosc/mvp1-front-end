@@ -5,6 +5,7 @@ const nav = document.getElementById("nav");
 const filtros = document.getElementById("filtro");
 const login_usuario = document.getElementById("login-usuario");
 
+//Função para "remover" mudando o display para none dos filhos de um container
 const remove_content = (container) => {
   container.childNodes.forEach(child => {
     child.style? child.style.display = "none" : "Child undefined"
@@ -23,15 +24,15 @@ let servicos_lista = "";
 get_servico()
   .then(servicos => {
     if (servicos.Servicos.length != 0){
+
       //Caso haja algum serviço no servidor é adicionado para cada um deles um elemento na lista com as informações disponíveis
 
       servicos.Servicos.map((data) => {
-        const servicos_lista = `<p>${data.nome}</p>
-                                <p>${data.tipo}</p>
-                                <p>${data.descricao}</p>
-                                <p>${data.bairro}, ${data.cidade}/${data.estado}</p>
-                                <p>Horário: ${data.horario}</p>
-                                <p>Contato: ${data.contato}</p>`;
+        const servicos_lista = `<p>Serviço: ${data.nome}</p>
+                                <p>Tipo: ${data.tipo.toLowerCase()}</p>
+                                <p>Descrição: ${data.descricao  || 'Não Informada'}</p>
+                                <p>Localidades: ${data.bairro || 'Bairro não Informado'}, ${data.cidade || 'Cidade não Informada'}/${data.estado || 'Estado não Informado'}</p>
+                                <p>Horário: ${data.horario || 'Não Informado'}</p>`;
         const lista = document.createElement('li');
         lista.innerHTML = servicos_lista
         servicos_disp.appendChild(lista);
@@ -61,6 +62,7 @@ function login(e) {
     .then((pessoa)=> {
       if (usuario == pessoa.email && senha == pessoa.senha){ 
         pagina_logada(pessoa)
+        document.getElementById('login').style.display='none'
       } else {
         alert('email ou senha errada! Tente novamente ou se cadastre no site')
       }
@@ -76,39 +78,49 @@ function pagina_logada(pessoa){
   filtros.style.display = 'none'
   const nav = document.getElementById('nav')
 
+  remove_content(nav)
+  nav.style.display = 'block'
+
   const lista_servicos = document.createElement('div')
+  lista_servicos.id = "lista-container"
+
+  
   nav.classList.add('nav')
-  const content = `<h2>Filtros</h2>
+  const content = `<h2>Serviços</h2>
                     <div class="servicos"> 
                       <ul id="lista-servicos">
+                      </ul>
+                      <ul id="lista-pessoa">
                       </ul>
                     </div>`
   lista_servicos.innerHTML = content
   nav.appendChild(lista_servicos)
+  lista_servicos.style.display = 'block'
 
-  const lista = document.getElementById("lista-servicos")
 
+  const lista_servico = document.getElementById("lista-servicos")
+  const lista_pessoa = document.getElementById("lista-pessoa")
+  
   if (pessoa.servicos.length != 0){
       pessoa.servicos.map((data) => {
-      
+
       const lista_item = document.createElement('li');
       const button_item = document.createElement('button')
 
       button_item.innerText = `${data.nome}`
       button_item.id = `servico-${data.idServico}`
       button_item.addEventListener('click', (event) => {
-        event.preventDefault()
-        servico(data)
+        servico_form(data)
       })
 
       lista_item.appendChild(button_item)
-      lista.appendChild(lista_item)
+      lista_servico.appendChild(lista_item)
       
     })
   } else {
         const sem_servico = document.createElement('p');
         sem_servico.innerHTML=`Nenhum serviço cadastrado`
-        lista.appendChild(sem_servico)
+        lista_servico.appendChild(sem_servico)
   }
 
   const item_adicionar = document.createElement('li');
@@ -117,12 +129,11 @@ function pagina_logada(pessoa){
   button_adicionar.innerText = 'Adicionar um serviço'
   button_adicionar.id = 'adicionar-servico'
   button_adicionar.addEventListener('click', (event) => {
-    event.preventDefault()
     cadastro_servico(pessoa.id, pessoa.email)
   })
 
   item_adicionar.appendChild(button_adicionar)
-  lista.appendChild(item_adicionar)
+  lista_pessoa.appendChild(item_adicionar)
 
   const excluir = document.createElement('li');
   const button_excluir = document.createElement('button')
@@ -130,13 +141,14 @@ function pagina_logada(pessoa){
   button_excluir.innerText = 'Excluir usuário'
   button_excluir.id = 'excluir-usuario'
   button_excluir.addEventListener('click', (event) => {
-    event.preventDefault()
     delete_pessoa(pessoa.id)
-    deslogar()
+    .then((response)=>{
+      deslogar()
+    })
   })
 
   excluir.appendChild(button_excluir)
-  lista.appendChild(excluir)  
+  lista_pessoa.appendChild(excluir)  
 
   remove_content(main)
 }
@@ -146,11 +158,12 @@ function pagina_logada(pessoa){
   Função de renderização do formulário com as informações cadastradas e possibilidade de edição 
   --------------------------------------------------------------------------------------
 */
-function servico(data){
+function servico_form(data){
 
   remove_content(main)
   const formulario = document.getElementById('formulario-servico')
   let servico_elemento;
+
   if (!formulario){
     main.classList.add("form")
 
@@ -192,16 +205,16 @@ function servico(data){
                 </div>
                 <button type="submit" id="editar-servico">Editar</button>`
   servico_elemento.innerHTML = form
+  servico_elemento.style.display = 'block'
 
   main.appendChild(servico_elemento)
 
   const formulario_servico = document.getElementById("formulario-servico");
   formulario_servico.addEventListener("submit", function(event){
-
     event.preventDefault()
     const formData = new FormData(formulario_servico);
     put_servico(formData, data.idServico)
-      .then(response => alert('Serviço editado'))  
+      .then(response => alert(`Serviço ${response} editado`))  
   })
 }
 /*
@@ -213,6 +226,7 @@ function cadastro_usuario(){
 
   document.getElementById('login').style.display='none'
   nav.style.display="none"
+
   remove_content(main)
   main.classList.add("form")
 
@@ -254,15 +268,35 @@ function cadastro_usuario(){
     if (senha === confirmacao_senha){
 
       post_pessoa(formData)
-        .then(response => {
-          alert(`Usuario ${formData.email} cadastrada`)
-          get_pessoa(formData.email)
-            .then(pessoa => pagina_logada(pessoa))
+      get_pessoa(formData.get("email"))
+        .then(pessoa => {
+          pagina_logada(pessoa) //Após cadastrar a pessoa redireciona para a pagina logada
         })
     } else {
       alert('Senha e Confirmação da senha não são iguais!')
     }     
   })  
+}
+/*
+  --------------------------------------------------------------------------------------
+  Função de adição de item na lista ao cadastrar novo serviço
+  --------------------------------------------------------------------------------------
+*/
+function add_servico(servico){
+
+  const lista_servico = document.getElementById("lista-servicos")
+
+  const lista_item = document.createElement('li');
+  const button_item = document.createElement('button')
+  
+  button_item.innerText = `${servico.nome}`
+  button_item.id = `servico-${servico.idServico}`
+  button_item.addEventListener('click', (event) => {
+    servico_form(servico)
+  })
+
+  lista_item.appendChild(button_item)
+  lista_servico.appendChild(lista_item)
 }
 /*
   --------------------------------------------------------------------------------------
@@ -272,13 +306,21 @@ function cadastro_usuario(){
 function cadastro_servico(id, email){
 
   remove_content(main)
-  main.classList.add("form")
 
-  const servico_elemento = document.createElement('form')
-  servico_elemento.id = 'cadastro-servico'
+  const formulario_existente = document.getElementById('cadastro-servico')
+  let servico_elemento;
+
+  if (!formulario_existente){
+    main.classList.add("form")
+
+    servico_elemento = document.createElement('form')
+    servico_elemento.id = 'cadastro-servico'
+  } else {
+    servico_elemento = formulario_existente
+  }
   const form = `<div>
                   <label for="nome">Nome do serviço</label>
-                  <input type="text" name="nome" id="nome" placeholder="Insira o nome " />
+                  <input type="text" name="nome" id="nome" placeholder="Insira o nome " required />
                 </div>
                 <div>
                   <label for="tipo">Tipo</label>
@@ -310,7 +352,7 @@ function cadastro_servico(id, email){
                 <button type="submit" id="cadastrar-servico">Cadastrar</button>`
 
   servico_elemento.innerHTML = form
-
+  servico_elemento.style.display = 'block'
   main.appendChild(servico_elemento)
 
   const formulario = document.getElementById("cadastro-servico");
@@ -319,11 +361,11 @@ function cadastro_servico(id, email){
     event.preventDefault()
     const formData = new FormData(formulario);
 
+ 
     post_servico(formData, idPrestadora=id)
-        .then(response => {
-          alert(`Serviço ${response.servico.nome} cadastrado`)
-          get_pessoa(email)
-            .then(pessoa => pagina_logada(pessoa))
-        })
-  })
+      .then(response => {
+        alert(`Serviço ${response.nome} cadastrado`)
+        add_servico(response)
+      })       
+  }, once=true)
 }
