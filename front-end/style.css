@@ -1,0 +1,160 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #3b0b72;
+}  
+::-webkit-scrollbar-track {
+    background: #f2f2f2;
+}
+.none{
+    display: none;   
+}
+header{
+    background-color: #720B4F;
+    display: flex;
+    justify-content: space-between;
+    height: 7vh;
+}
+header img{
+    margin: 10px;
+    cursor: pointer;
+}
+body{
+    background-color: #BFBFBF;
+    color: rgba(255, 255, 255, 0.87);
+}
+.container{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    column-gap: 10px;
+    width: 100%;
+    height: 93vh;
+}
+.container .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+/* Modal Content/Box */
+.container .modal .modal-content {
+    background-color: #720B4F;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 600px;
+    height: 300px;
+}
+.container .modal .modal-content input{
+    padding: 5px 10px;
+    background-color: #720B4F;
+    color: white;
+    font-size: 18px;
+    /* width: 300px; */
+    border: none;
+}
+.container .modal .close {
+    position: absolute;
+    right: 30vw;
+    top: 20vh;
+    color: #000;
+    font-size: 35px;
+    font-weight: bold;
+}
+.modal .close:hover,
+.modal .close:focus {
+    color: red;
+    cursor: pointer;
+}
+.container h2{
+    padding: 5px;
+    font-weight: 500;
+}
+.container .nav{
+    background-color: #7D3765;   
+}
+.container .nav button{
+    padding: 5px;
+    border-radius: 10px;
+    border: transparent;
+    background-color: #BFBFBF;
+    align-self: flex-end;
+}
+.container .nav .options{
+    display: flex;
+    height: 70%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+.container .main{
+    grid-column-start: 2;
+    grid-column-end: 8;
+    overflow-y: scroll;
+    font-size: 18px;
+}
+.container .main ul{
+    list-style: none;
+    display: grid;
+    margin: 20px;
+    grid-template-columns: auto auto auto;
+    gap: 25px;
+}
+.container .main ul li{
+    background-color: #7D3765;
+    padding: 10px;
+}
+.container .main.form{
+    grid-column-start: 4;
+    grid-column-end: 5;
+    overflow-y: hidden;
+}
+.container .main form{
+    height: 70vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-top: 20px;
+    padding: 10px 100px;
+    background-color: #7D3765;
+}
+.container .main form div{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+.container .main form button{
+    margin: 10px;
+    padding: 10px;
+    width: 100px;
+    background-color: #720B4F;
+    color: white;
+    border-radius: 10px;
+    border: none;
+    align-self: flex-end;
+    cursor: pointer;
+}
+.container .main form input, textarea{
+    padding: 5px 10px;
+    background-color: #720B4F;
+    color: white;
+    font-size: 18px;
+    width: 300px;
+    border: none;
+}
+
+  

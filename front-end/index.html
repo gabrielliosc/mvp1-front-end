@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP 1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="./img/women.jpg">
+        <img src="./img/svg/user.svg" alt="Login de usuário" id="login-usuario" onclick="document.getElementById('login').style.display='block'" title="Login"> 
+    </header>
+    <div class="container" id="container">
+        <div class="nav" id="nav">
+            <div id="filtro">
+                <h2>Filtros</h2>
+                <div class="options" id="options">
+                    <div>
+                        <label for="especialidade">Especialidade</label>
+                        <br />
+                        <select id="especialidade">
+                            <option>ELETRICISTA</option>
+                            <option>HIDRAULICA</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="local">Local</label>
+                        <br />
+                        <select id="local">
+                            <option>Rio de Janeiro</option>
+                            <option>São Paulo</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="turno">Turno</label>
+                        <br />
+                        <select id="turno">
+                            <option value="manha">Manhã</option>
+                            <option value="tarde">Tarde</option>
+                            <option value="noite">Noite</option>
+                        </select>
+                    </div>
+                </div>
+                <button>Aplicar Filtro</button> 
+            </div>           
+        </div>
+        <div class="main" id="main">
+            <h2>Serviços disponíveis</h2>
+            <ul id="servicos-disponiveis">
+            </ul>
+        </div>
+        <div id="login" class="modal">
+            <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <form class="modal-content">
+                <div>
+                  <label for="email-login">Email</label>
+                  <input type="email" name="email" id="email-login" placeholder="email@gmail.com" required/>
+                </div>
+                <div>
+                  <label for="senha-login">Senha</label>
+                  <input type="password" name="senha" id="senha-login" placeholder="Insira a senha" required/>
+                </div>
+                <div>
+                  <button type="submit" onclick="login(event)">Ok</button>
+                </div>          
+            </form>
+            <button onclick="cadastro_usuario()">Cadastrar</a>
+        </div>
+    </div>
+</body>
+<!--Importando primeiro o arquivo funcoes_api.js que contem as funçoes de conexão com a API-->
+<script src="funcoes_api.js"></script>
+<script src="script.js"></script>
+</html>
