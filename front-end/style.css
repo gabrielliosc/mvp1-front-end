@@ -38,37 +38,62 @@ body{
     height: 93vh;
 }
 .container .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    display: none; 
+    position: fixed; 
+    z-index: 1; 
     left: 0;
     top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    width: 100%; 
+    height: 100%; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
     padding-top: 60px;
 }
-/* Modal Content/Box */
 .container .modal .modal-content {
     background-color: #720B4F;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    margin: 5% auto 15% auto;
     border: 1px solid #888;
-    width: 600px;
-    height: 300px;
+    width: fit-content;
+    height: fit-content;
+}
+.container .modal .modal-content div{
+    margin: 10px;
+    margin-right: 70px;
 }
 .container .modal .modal-content input{
     padding: 5px 10px;
-    background-color: #720B4F;
+    margin: 5px;
+    background-color: #888;
     color: white;
     font-size: 18px;
-    /* width: 300px; */
+    border-radius: 10px;
+    border: none;
+}
+.container .modal button{
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: #3b0b72;
+    color: white;
+    font-size: 15px;
+    width: 100px;
+    border-radius: 10px;
+    border: none;
+}
+.container .modal button:hover,
+.container .modal button:focus{
+    padding: 5px 10px;
+    margin: 5px;
+    background-color: rgb(0, 145, 137);
+    color: white;
+    font-size: 15px;
+    width: 100px;
+    border-radius: 10px;
     border: none;
 }
 .container .modal .close {
     position: absolute;
-    right: 30vw;
-    top: 20vh;
+    right: 13.5em;
+    top: 3.5em;
     color: #000;
     font-size: 35px;
     font-weight: bold;
@@ -78,32 +103,104 @@ body{
     color: red;
     cursor: pointer;
 }
-.container h2{
-    padding: 5px;
-    font-weight: 500;
+.container .modal button#botao-cadastro{
+    position: absolute;
+    right: 32.5em;
+    top: 15.7em;
 }
 .container .nav{
-    background-color: #7D3765;   
+    background-color: #7D3765;
+    width: fit-content;   
 }
-.container .nav button{
-    padding: 5px;
-    border-radius: 10px;
-    border: transparent;
-    background-color: #BFBFBF;
-    align-self: flex-end;
+.container .nav h2{
+    width: fit-content;
+    margin-bottom: 10px;
+    padding: 0px;
+    font-weight: 500;
 }
-.container .nav .options{
+.container .nav div#lista-container{
+    margin: 20px;
+    width: fit-content;
+}
+.container .nav div#lista-container div.servicos{
     display: flex;
-    height: 70%;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px;
+    align-items: flex-start;
+    height: 80vh;
+    width: fit-content;
+}
+.container .nav div#lista-container div.servicos ul#lista-servicos{
+    margin-bottom: 10px;
+    overflow-y: scroll;
+}
+.container .nav div#lista-container div.servicos ul#lista-servicos li button{
+    margin-right: 5px;
+    margin-bottom: 10px;
+    padding: 5px 0px;
+    background-color: transparent;
+    border-bottom: 2px dotted #3b0b72;
+    color: white;
+    font-size: 15px;
+    border-radius: 0px;
+}
+.container .nav div#lista-container div.servicos ul#lista-servicos li button:focus,
+.container .nav div#lista-container div.servicos ul#lista-servicos li button:hover{
+    background-color: #3b0b72;
+}
+.container .nav div#lista-container div.servicos ul#lista-pessoa{
+    list-style: none;
+    display: flex;
+}
+.container .nav div#lista-container div.servicos button#adicionar-servico{
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #3b0b72;
+    color: white;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+}
+.container .nav div#lista-container div.servicos button#excluir-usuario{
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: rgb(128, 2, 2);
+    color: white;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+}
+.container .nav button{
+    margin-right: 5px;
+    padding: 5px 10px;
+    background-color: #3b0b72;
+    color: white;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+}
+.container .nav div#filtro{
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-right: 40px;
+}
+.container .nav div#options{
+    display: flex;
+    height: 40vh;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 .container .main{
     grid-column-start: 2;
     grid-column-end: 8;
     overflow-y: scroll;
     font-size: 18px;
+}
+.container .main h2{
+    padding: 5px;
+    margin-top: 15px;
+    font-weight: 500;
 }
 .container .main ul{
     list-style: none;
