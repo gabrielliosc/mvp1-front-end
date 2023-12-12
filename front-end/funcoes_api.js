@@ -82,10 +82,12 @@ const get_pessoa = async (email) => {
     Função para editar um serviço do servidor via requisição PUT
     --------------------------------------------------------------------------------------
   */
-  const put_servico = async (formData, idServico)  => {
+  const put_servico = async (idServico, formData)  => {
+    
+    formData.append('idServico', idServico)
 
-    const response = await fetch(`http://localhost:5000/servico/${idServico}`, {
-      method: "PUT",
+    const response = await fetch(`http://localhost:5000/servico`, {
+      method: "put",
       body: formData,
     });
   

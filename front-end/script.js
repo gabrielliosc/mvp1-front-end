@@ -211,11 +211,18 @@ function servico_form(data){
   main.appendChild(servico_elemento)
 
   const formulario_servico = document.getElementById("formulario-servico");
-  formulario_servico.addEventListener("submit", function(event){
+
+  formulario_servico.addEventListener("submit", function handler (event){
     event.preventDefault()
+
     const formData = new FormData(formulario_servico);
-    put_servico(formData, data.idServico)
-      .then(response => alert(`Serviço ${response} editado`))  
+    formData.append("idPrestadora", data.idPrestadora)
+
+    put_servico(data.idServico, formData)
+      .then(response =>{
+        alert(`Serviço ${response.nome} editado`)
+        formulario_servico.removeEventListener('submit', handler)
+      })  
   })
 }
 /*
@@ -285,25 +292,27 @@ function cadastro_usuario(){
 */
 function add_servico(servico){
 
-  
-
   const lista_servico = document.getElementById("lista-servicos")
 
   const sem_servico = document.getElementById("nenhum-servico")
 
   if (sem_servico){lista_servico.removeChild(sem_servico)}
-  
-  const lista_item = document.createElement('li');
-  const button_item = document.createElement('button')
-  
-  button_item.innerText = `${servico.nome}`
-  button_item.id = `servico-${servico.idServico}`
-  button_item.addEventListener('click', (event) => {
-    servico_form(servico)
-  })
 
-  lista_item.appendChild(button_item)
-  lista_servico.appendChild(lista_item)
+  const lista_item = document.createElement('li');
+  const button_item = document.getElementById(`servico-${servico.idServico}`)
+
+  if (!button_item){
+    const button_item = document.createElement('button')
+  
+    button_item.innerText = `${servico.nome}`
+    button_item.id = `servico-${servico.idServico}`
+    button_item.addEventListener('click', (event) => {
+      servico_form(servico)
+    })
+
+    lista_item.appendChild(button_item)
+    lista_servico.appendChild(lista_item)
+  }   
 }
 /*
   --------------------------------------------------------------------------------------
@@ -322,6 +331,20 @@ function cadastro_servico(id, email){
 
     servico_elemento = document.createElement('form')
     servico_elemento.id = 'cadastro-servico'
+
+    servico_elemento.addEventListener("submit", function(event){
+
+      event.preventDefault()
+      const formData = new FormData(servico_elemento);
+  
+   
+      post_servico(formData, idPrestadora=id)
+        .then(response => {
+          alert(`Serviço ${response.nome} cadastrado`)
+          add_servico(response)
+        })       
+    }, once=true)
+
   } else {
     servico_elemento = formulario_existente
   }
@@ -361,18 +384,4 @@ function cadastro_servico(id, email){
   servico_elemento.innerHTML = form
   servico_elemento.style.display = 'block'
   main.appendChild(servico_elemento)
-
-  const formulario = document.getElementById("cadastro-servico");
-  formulario.addEventListener("submit", function(event){
-
-    event.preventDefault()
-    const formData = new FormData(formulario);
-
- 
-    post_servico(formData, idPrestadora=id)
-      .then(response => {
-        alert(`Serviço ${response.nome} cadastrado`)
-        add_servico(response)
-      })       
-  }, once=true)
 }
