@@ -119,6 +119,7 @@ function pagina_logada(pessoa){
     })
   } else {
         const sem_servico = document.createElement('p');
+        sem_servico.id="nenhum-servico"
         sem_servico.innerHTML=`Nenhum serviço cadastrado`
         lista_servico.appendChild(sem_servico)
   }
@@ -284,8 +285,14 @@ function cadastro_usuario(){
 */
 function add_servico(servico){
 
+  
+
   const lista_servico = document.getElementById("lista-servicos")
 
+  const sem_servico = document.getElementById("nenhum-servico")
+
+  if (sem_servico){lista_servico.removeChild(sem_servico)}
+  
   const lista_item = document.createElement('li');
   const button_item = document.createElement('button')
   
