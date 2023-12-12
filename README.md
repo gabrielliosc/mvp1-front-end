@@ -30,7 +30,7 @@
 
 ## Sobre O Projeto
 
-<p>Bem vindo(a)! Esse é um pojeto de front-end desenvolvido para um MVP de uma aplicação fullstack, a parte de back-end do projeto pode ser encontrada aqui.
+<p>Bem vindo(a)! Esse é um pojeto de front-end desenvolvido para um MVP de uma aplicação fullstack, a parte de back-end do projeto pode ser encontrada https://github.com/gabrielliosc/mvp1-back-end.
 Muitas mulheres se sentem inseguras morando sozinha principalmente pela situação de estar sozinha e precisar solicitar um serviço para a casa e um homem desconhecido entrar na casa.
 Com essa problemática em mente, o objetivo do projeto é desenvolver um site de divulgação de serviços realizados por mulheres.</p>
 <p>No site é possível:</p>
@@ -51,7 +51,7 @@ https://www.canva.com/design/DAF2u-sRBac/IF5gLtuWmYTCmdXAq5RVcQ/view?utm_content
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Instalação
+## Instalação
 
 1. Clone o repositório
    ```sh
