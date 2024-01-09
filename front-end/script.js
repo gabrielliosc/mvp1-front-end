@@ -15,6 +15,15 @@ const remove_content = (container) => {
 
 const deslogar = () => location.reload()
 
+//Função para mostrar a senha ao clicar no checkbox
+const mostrar_senha = (id) => {
+  const input = document.getElementById(id)
+  input.type === "password" ? input.type = "text" : input.type = "password"
+}
+
+const cadastrar = document.getElementById("botao-cadastro")
+cadastrar.onclick = cadastro_usuario
+
 let servicos_lista = "";
 /*
   --------------------------------------------------------------------------------------
@@ -230,7 +239,9 @@ function servico_form(data){
   Função de renderização do formulário de cadastro de usuário
   --------------------------------------------------------------------------------------
 */
-function cadastro_usuario(){
+function cadastro_usuario(e){
+
+  e.preventDefault()
 
   document.getElementById('login').style.display='none'
   nav.style.display="none"
@@ -252,9 +263,17 @@ function cadastro_usuario(){
                   <label for="senha">Senha</label>
                   <input type="password" name="senha" id="senha" placeholder="Insira a senha" required />
                 </div>
+                <div class="checkbox">
+                  <input type="checkbox" onclick="mostrar_senha('senha')">
+                  <span>Mostrar a Senha</span>
+                </div>
                 <div>
                   <label for="confirmacao">Confirmação da senha</label>
-                  <input type="password" name="confirmacao" id="confirmacao" placeholder="Confirme sua senha" required />
+                  <input type="password" name="confirmacao" id="confirmacao" placeholder="Confirme sua senha" required />          
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" onclick="mostrar_senha('confirmacao')">
+                  <span>Mostrar a Senha</span>
                 </div>
                 <div>
                   <label for="sobre">Sobre</label>
@@ -337,7 +356,6 @@ function cadastro_servico(id, email){
       event.preventDefault()
       const formData = new FormData(servico_elemento);
   
-   
       post_servico(formData, idPrestadora=id)
         .then(response => {
           alert(`Serviço ${response.nome} cadastrado`)

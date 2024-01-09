@@ -60,6 +60,18 @@ body{
     margin: 10px;
     margin-right: 70px;
 }
+
+.container .modal .modal-content div a#botao-cadastro{
+    text-decoration: underline;
+    color: #9d78c7;
+    cursor: pointer;
+}
+.container .modal .modal-content div.checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15px;
+}
 .container .modal .modal-content input{
     padding: 5px 10px;
     margin: 5px;
@@ -68,6 +80,16 @@ body{
     font-size: 18px;
     border-radius: 10px;
     border: none;
+}
+.container .modal .modal-content .checkbox input[type="checkbox"]{
+    color: white;
+    font-size: 18px;
+    width: auto;
+    border: none;
+}
+
+.container .modal .modal-content .checkbox span{
+    margin-right: 3rem;
 }
 .container .modal button{
     padding: 5px 10px;
@@ -78,6 +100,7 @@ body{
     width: 100px;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 .container .modal button:hover,
 .container .modal button:focus{
@@ -103,11 +126,7 @@ body{
     color: red;
     cursor: pointer;
 }
-.container .modal button#botao-cadastro{
-    position: absolute;
-    right: 32.5em;
-    top: 15.7em;
-}
+
 .container .nav{
     background-color: #7D3765;
     width: fit-content;   
@@ -143,6 +162,7 @@ body{
     color: white;
     font-size: 15px;
     border-radius: 0px;
+    cursor: pointer;
 }
 .container .nav div#lista-container div.servicos ul#lista-servicos li button:focus,
 .container .nav div#lista-container div.servicos ul#lista-servicos li button:hover{
@@ -160,6 +180,7 @@ body{
     font-size: 15px;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 .container .nav div#lista-container div.servicos button#excluir-usuario{
     margin-right: 5px;
@@ -169,6 +190,7 @@ body{
     font-size: 15px;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 .container .nav button{
     margin-right: 5px;
@@ -178,6 +200,7 @@ body{
     font-size: 15px;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
 }
 .container .nav div#filtro{
     margin-left: 15px;
@@ -234,6 +257,12 @@ body{
     display: flex;
     justify-content: space-between;
 }
+.container .main form div.checkbox{
+    padding: 0 10px;
+    display: block;
+    align-self: flex-end;
+    font-size: 15px;
+}
 .container .main form button{
     margin: 10px;
     padding: 10px;
@@ -254,4 +283,9 @@ body{
     border: none;
 }
 
-  
+.container .main form input[type = 'checkbox'] {
+    color: white;
+    font-size: 18px;
+    width: auto;
+    border: none;
+}

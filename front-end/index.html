@@ -54,18 +54,22 @@
             <span onclick="document.getElementById('login').style.display='none'" class="close" title="Close Modal">&times;</span>
             <form class="modal-content">
                 <div>
-                  <label for="email-login">Email</label>
-                  <input type="email" name="email" id="email-login" placeholder="email@gmail.com" required/>
+                    <label for="email-login">Email</label>
+                    <input type="email" name="email" id="email-login" placeholder="email@gmail.com" required/>
                 </div>
                 <div>
-                  <label for="senha-login">Senha</label>
-                  <input type="password" name="senha" id="senha-login" placeholder="Insira a senha" required/>
+                    <label for="senha-login">Senha</label>
+                    <input type="password" name="senha" id="senha-login" placeholder="Insira a senha" required/>
                 </div>
+                <div class="checkbox">
+                    <input type="checkbox" onclick="mostrar_senha('senha-login')">
+                    <span>Mostrar a Senha</span>
+                    <button type="submit" onclick="login(event)">Entrar</button>
+                </div>   
                 <div>
-                  <button type="submit" onclick="login(event)">Entrar</button>
-                </div>          
-            </form>
-            <button onclick="cadastro_usuario()" id="botao-cadastro">Cadastrar</a>
+                    <a id="botao-cadastro">Se cadastre</a>
+                </div>                  
+            </form>         
         </div>
     </div>
 </body>
