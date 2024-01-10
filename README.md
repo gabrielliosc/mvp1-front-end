@@ -63,13 +63,14 @@ https://www.canva.com/design/DAF2u-sRBac/IF5gLtuWmYTCmdXAq5RVcQ/view?utm_content
 
 - [x] Menu Header
 - [x] Página Inicial
-- [ ] Logo
+- [x] Logo
 - [x] Formulário de cadastro de pessoa
 - [x] Formulário de cadastro de serviço
 - [x] Formulário de cadastro de edição
 - [x] Modal de login
 - [x] Página dos serviços
 - [ ] Estilizar os elementos conforme layout
+- [ ] Configurar filtro
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
