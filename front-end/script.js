@@ -24,6 +24,9 @@ const mostrar_senha = (id) => {
 const cadastrar = document.getElementById("botao-cadastro")
 cadastrar.onclick = cadastro_usuario
 
+const logo = document.getElementById("logo")
+logo.onclick = deslogar
+
 let servicos_lista = "";
 /*
   --------------------------------------------------------------------------------------
