@@ -211,9 +211,16 @@ body{
     display: flex;
     height: 40vh;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-bottom: 20px;
 }
+
+.container .nav div#options div{
+    display: flex;
+    flex-direction: column;
+}
+
+
 .container .main{
     grid-column-start: 2;
     grid-column-end: 8;
@@ -281,6 +288,15 @@ body{
     font-size: 18px;
     width: 300px;
     border: none;
+}
+
+div.options select {
+    padding: 5px 10px;
+    background-color: #720B4F;
+    color: white;
+    font-size: 13px;
+    border: none;
+    width: fit-content;
 }
 
 .container .main form input[type = 'checkbox'] {
